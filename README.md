@@ -1,8 +1,7 @@
 # dextra-robot-hand
+Associated with the paper "A Rapid and Robust Tendon-Driven Robotic Hand for Human Robot Interaction Playing Rock-Paper-Scissors", X. Deng, S. Weirich, R. Katschmann, T. Delbruck, 2024 33rd IEEE International Conference on Robot and Human Interactive Communication (ROMAN).
 
-See the associated git page https://sensorsini.github.io/dextra-robot-hand/ that has the Dextra hand design.
+These are the source files for the Git Page site. To visit the live site, please use the correct link: https://sensorsini.github.io/dextra-robot-hand/.
 
-Associated with the 2024 RO-MAN paper "A Rapid and Robust Tendon-Driven Robotic Hand for Human Robot Interaction Playing Rock-Paper-Scissors", X. Deng, S. Weirich, R. Katschmann, T. Delbruck
 
-See https://youtu.be/i0qw0VHliiI
 
