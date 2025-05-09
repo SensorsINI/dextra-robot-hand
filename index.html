@@ -1,353 +1,214 @@
-<!--Credits:  This website is based on the web template: <a href="https://github.com/richzhang/webpage-template.git -->
-<!--<script src="http://www.google.com/jsapi" type="text/javascript"></script> 
-<script type="text/javascript">google.load("jquery", "1.3.2");</script>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A Rapid and Robust Tendon-Driven Robotic Hand for Human Robot Interaction Playing Rock-Paper-Scissors | IEEE ROMAN 2024</title>
 
-<style type="text/css">
-	body {
-		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-		font-weight:300;
-		font-size:18px;
-		margin-left: auto;
-		margin-right: auto;
-		width: 1100px;
-	}
-	
-	h1 {
-		font-size:32px;
-		font-weight:300;
-	}
-	
-	.disclaimerbox {
-		background-color: #eee;		
-		border: 1px solid #eeeeee;
-		border-radius: 10px ;
-		-moz-border-radius: 10px ;
-		-webkit-border-radius: 10px ;
-		padding: 20px;
-	}
+    <!-- Meta Tags -->
+    <meta name="description" content="IEEE ROMAN 2024: A rapid, robust tendon-driven robotic hand for human-robot interaction. Demonstrates real-time rock-paper-scissors gameplay with a quick tendon driven robotic hand.">
+    <meta name="robots" content="index, follow"> <!-- Fixed from 'nofollow' -->
+    <link rel="canonical" href="https://sensorsini.github.io/dextra-robot-hand/">
 
-	video.header-vid {
-		height: 140px;
-		border: 1px solid black;
-		border-radius: 10px ;
-		-moz-border-radius: 10px ;
-		-webkit-border-radius: 10px ;
-	}
-	
-	img.header-img {
-		height: 140px;
-		border: 1px solid black;
-		border-radius: 10px ;
-		-moz-border-radius: 10px ;
-		-webkit-border-radius: 10px ;
-	}
-	
-	img.rounded {
-		border: 1px solid #eeeeee;
-		border-radius: 10px ;
-		-moz-border-radius: 10px ;
-		-webkit-border-radius: 10px ;
-	}
-	
-	a:link,a:visited
-	{
-		color: #1367a7;
-		text-decoration: none;
-	}
-	a:hover {
-		color: #208799;
-	}
-	
-	td.dl-link {
-		height: 160px;
-		text-align: center;
-		font-size: 22px;
-	}
-	
-	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
-		box-shadow:
-		0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
-		5px 5px 0 0px #fff, /* The second layer */
-		5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
-		10px 10px 0 0px #fff, /* The third layer */
-		10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
-		15px 15px 0 0px #fff, /* The fourth layer */
-		15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
-		20px 20px 0 0px #fff, /* The fifth layer */
-		20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
-		25px 25px 0 0px #fff, /* The fifth layer */
-		25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
-		margin-left: 10px;
-		margin-right: 45px;
-	}
+    <!-- Open Graph for Social Sharing -->
+    <meta property="og:title" content="A Rapid and Robust Tendon-Driven Robotic Hand for Human Robot Interaction Playing Rock-Paper-Scissors">
+    <meta property="og:description" content="Rapid human-robot interactions require fast hardware platforms with minimal latency and high reliability. In response, we present a cost-effective, electrically actuated, tendon-driven robotic hand...">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sensorsini.github.io/dextra-robot-hand/">
 
-	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
-		box-shadow:
-		0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
+    <!-- CSS Styles -->
+    <style>
+        body {
+            font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+            font-weight: 300;
+            font-size: 18px;
+            margin: 0 auto;
+            width: 1100px;
+        }
 
-		margin-left: 10px;
-		margin-right: 45px;
-	}
+        h1 {
+            font-size: 32px;
+            font-weight: 300;
+        }
 
+        .disclaimerbox {
+            background-color: #eee;		
+            border: 1px solid #eeeeee;
+            border-radius: 10px;
+            padding: 20px;
+        }
 
-	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
-		box-shadow:
-		0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
-		5px 5px 0 0px #fff, /* The second layer */
-		5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
-		10px 10px 0 0px #fff, /* The third layer */
-		10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
-		margin-top: 5px;
-		margin-left: 10px;
-		margin-right: 30px;
-		margin-bottom: 5px;
-	}
-	
-	.vert-cent {
-		position: relative;
-		top: 50%;
-		transform: translateY(-50%);
-	}
-	
-	hr
-	{
-		border: 0;
-		height: 1px;
-		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-	}
-</style>
+        video.header-vid, img.header-img {
+            height: 140px;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
 
-<html>
-<head>	
-	<meta charset="UTF-8">
-	<title>A Rapid and Robust Tendon-Driven Robotic Hand for Human Robot Interaction Playing Rock-Paper-Scissors</title>
-	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-	<meta name="description" content="IEEE ROMAN 2024 A Rapid and Robust Tendon-Driven Robotic Hand for Human Robot Interaction Playing Rock-Paper-Scissors">
-	<meta name="robots" content="index, nofollow">
-	<link rel="canonical" href="https://sensorsini.github.io/dextra-robot-hand/">
-	<!--<meta property="og:image" content="Path to my teaser.png"/>--> <!-- Facebook automatically scrapes this. Go to https://developers.facebook.com/tools/debug/ if you update and want to force Facebook to rescrape. -->
-	<meta property="og:title" content="A Rapid and Robust Tendon-Driven Robotic Hand for Human Robot Interaction Playing Rock-Paper-Scissors" />
-	<meta property="og:description" content="Rapid human-robot interactions require fast hardware platforms with minimal latency and high reliability. In response, we present a cost-effective, electrically actuated, tendon-driven robotic hand. This hand features a unique spool-free actuation mechanism that achieves a limit-to-limit flexion movement in less than 60 ms, matching human speed. To our knowledge, it is among the fastest electric motor tendon-driven robotic hands available today. The high speed of the robotic hand was successfully demonstrated in public by playing Rock Paper Scissors at a science fair. This research work outlines the design methodology and introduces a simulation-optimization framework that allows users to preview the motion of the hand, quantify the actuation performance, and customize the design parameters prior to fabrication. The proposed actuation mechanism, along with the simulation and optimization tools, illustrates design principles and computational methods applicable to other dynamic human-robot applications that require fast reaction times. " />
+        img.rounded {
+            border: 1px solid #eeeeee;
+            border-radius: 10px;
+        }
 
-	<!-- Get from Google Analytics -->
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<!--<script><script async src=""></script> 
-	
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
+        a:link, a:visited {
+            color: #1367a7;
+            text-decoration: none;
+        }
 
-		gtag('config', 'UA-75863369-6');
-	</script>-->
+        a:hover {
+            color: #208799;
+        }
+
+        td.dl-link {
+            height: 160px;
+            text-align: center;
+            font-size: 22px;
+        }
+
+        /* Layered Paper Effect */
+        .layered-paper-big, .layered-paper {
+            box-shadow:
+                0px 0px 1px 1px rgba(0,0,0,0.35),
+                5px 5px 0 0px #fff,
+                5px 5px 1px 1px rgba(0,0,0,0.35),
+                10px 10px 0 0px #fff,
+                10px 10px 1px 1px rgba(0,0,0,0.35),
+                15px 15px 0 0px #fff,
+                15px 15px 1px 1px rgba(0,0,0,0.35),
+                20px 20px 0 0px #fff,
+                20px 20px 1px 1px rgba(0,0,0,0.35),
+                25px 25px 0 0px #fff,
+                25px 25px 1px 1px rgba(0,0,0,0.35);
+            margin: 10px;
+        }
+
+        .paper-big {
+            box-shadow:
+                0px 0px 1px 1px rgba(0,0,0,0.35);
+            margin: 10px;
+        }
+
+        .vert-cent {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+        }
+    </style>
 </head>
 
 <body>
-	<br>
-	<center>
-		<span style="font-size:36px">A Rapid and Robust Tendon-Driven Robotic Hand for Human Robot Interaction Playing Rock-Paper-Scissors </span>
-		<h2>(IEEE ROMAN 2024)</h2>
-		<table align=center width=600px>
-			<table align=center width=600px>
-				<tr>
-					<td align=center width=100px>
-						<center>
-							<span style="font-size:24px">Deng, Xiang</span>
-						</center>
-					</td>
-					<td align=center width=100px>
-						<center>
-							<span style="font-size:24px">Weirich, Stefan</span>
-						</center>
-					</td>
-					<td align=center width=100px>
-						<center>
-							<span style="font-size:24px">Katzschmann, Robert</span>
-						</center>
-					</td>
-                    <td align=center width=100px>
-						<center>
-							<span style="font-size:24px">Delbruck, Tobi</span>
-						</center>
-					</td>
-				</tr>
-			</table>
-			<table align=center width=350px>
-				<tr>
-					<td align=center width=120px>
-						<center>
-							<span style="font-size:24px"><a href='https://ieeexplore.ieee.org/document/10731344'>[Paper]</a></span>
-                            
-						</center>
-					</td>
-					<td align=center width=200px>
-						<center>
-							<span style="font-size:24px"><a href=''>[arXiv Preprint]</a></span><br>
-						</center>
-					</td>
-				</tr>
-			</table>
-		</table>
-	</center>
-
-	<center>
-		<table align=center width=850px>
-			<tr>
-				<td width=260px>
-					<center>  
-                        <iframe width="660" height="395" src="https://www.youtube.com/embed/i0qw0VHliiI?si=HzZxLTYcg5oVnCpF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        
-					</center>
-				</td>
-			</tr>
-		</table> 
-	</center>
-    
-
-	<hr>
-
-	<table align=center width=850px>
-		<center><h1>Abstract</h1></center>
-		<tr>
-			<td>
-				Rapid human-robot interactions require fast hardware platforms with minimal latency and high reliability. In response, we present a cost-effective, electrically actuated, tendon-driven robotic hand. This hand features a unique spool-free actuation mechanism that achieves a limit-to-limit flexion movement in less than 60 ms, matching human speed. To our knowledge, it is among the fastest electric motor tendon-driven robotic hands available today. The high speed of the robotic hand was successfully demonstrated in public by playing Rock Paper Scissors at a science fair. This research work outlines the design methodology and introduces a simulation-optimization framework that allows users to preview the motion of the hand, quantify the actuation performance, and customize the design parameters prior to fabrication. The proposed actuation mechanism, along with the simulation and optimization tools, illustrates design principles and computational methods applicable to other dynamic human-robot applications that require fast reaction times. 
-			</td>
-		</tr>
-	</table>
-	<br>
-
-	<hr>
-    <center>
-		<table align=center width=850px>
-			<tr>
-				<td width=260px>
-					<center>
-                    <h1>Prototype demo at Swiss Scientifica 2023</h1>
-						<iframe width="660" height="395" src="https://www.youtube.com/embed/ge3BFSHn9Ug?si=jKT4lkE45elif5Fx" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen align="center"></iframe> 
-					</center>
-				</td>
-			</tr>
-		</table> 
-	</center>
-    
-	<center><h1>Talk</h1></center> 
-	<p align="center">
-		<iframe width="660" height="395" src="https://www.youtube.com/embed/vkMMNeTG4OU?si=wQg1zj4-bBOHpygQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-	</p>
-    
- 	<hr>
-	<center><h1>Design</h1></center>
-    <p align="center">
-    Everybody with the link can visualize the design, see the details, or even drag indivisual parts. No other sofrware is required.
-    </p>
-    <center>
-    	<a href="https://cad.onshape.com/documents/ef1448e23adf2fee03e4e1cd/w/cd10554b772462629b75c8dc/e/311517794416f3ce2e9ecc05" target="_blank">
-        	<img src="Media/DengDesignROMAN2024.gif" alt="Deng Design" width="600">
-        </a>
-        </center> 
-        <center
-        <span style="font-size:24px"><a href='https://cad.onshape.com/documents/ef1448e23adf2fee03e4e1cd/w/cd10554b772462629b75c8dc/e/311517794416f3ce2e9ecc05'>[Link]</a></span>
-        </center>
-    
-	<hr>
-
-	<center><h1>Code on Git</h1></center>
-    
-
-	<table align=center width=420px>
-		<center>
-			<tr>
-				<td>
-				</td>
-			</tr>
-		</center>
-	</table>
-	<table align=center width=400px>
-		<tr>
-			<td align=center width=400px>
-				<center>
-					<!--<td><img class="round" style="width:450px" src=""/></td>-->
-				</center>
-			</td>
-		</tr>
-	</table>
-	<!--<table align=center width=850px>
-		<center>
-			<tr>
-				<td>
-					Descriptions
-				</td>
-			</tr>
-		</center>
-	</table>-->
-	<table align=center width=800px>
-		<br>
-		<tr><center>
-			<span style="font-size:28px">&nbsp;<a href='https://github.com/SensorsINI/Dextra-robot-hand-firmware'>[Robot Demo Code]</a>
-            <span style="font-size:28px">&nbsp;<a href='https://github.com/SensorsINI/dextra-roshambo-python?tab=readme-ov-file'>[Link to Perception Pipeline]</a>
-			</center>
-		</span>
-	</table>
-	<br>
-	<hr> 
-	<br>
-    
-    <table align=center width=600px>
-    	<center>
-        <h2>Public Exhibitions</h2>
-        <h4>Swiss Scientifica, Sep 2-3, 2023</h4>
-        <h4>IEEE WiCAS Symposium, Apr 4, 2024</h4>
-        <h4>Swiss Robotics Day, Nov 1, 2024</h4> 
-        </center>
-    </table>
-    
-    <hr>
-	<br>
-
-	<table align=center width=600px>
-		<!--<tr>
-			<td><span style="font-size:14pt"><center>
-				<a href="">[Citation]</a>
-			</center></td>
-		</tr>-->
+    <header>
         <center>
-        <body>
-            <h2>Bibtex Citation</h2>
-            <code>
-        @INPROCEEDINGS{DengROMAN2024,
-
-  author={Deng, Xiang and Weirich, Stefan and Katzschmann, Robert K. and Delbruck, Tobi},
-
-  booktitle={2024 33rd IEEE International Conference on Robot and Human Interactive Communication (ROMAN)}, 
-
-  title={A Rapid and Robust Tendon-Driven Robotic Hand for Human-Robot Interactions Playing Rock-Paper-Scissors}, 
-
-  year={2024},
-
-  pages={2347-2354},
-
-  doi={10.1109/RO-MAN60168.2024.10731344}}
-
-            </code>
-        </body>
+            <h1>A Rapid and Robust Tendon-Driven Robotic Hand for Human Robot Interaction Playing Rock-Paper-Scissors</h1>
+            <h2>(IEEE ROMAN 2024)</h2>
+            <table align="center" width="600px">
+                <tr>
+                    <td align="center"><span style="font-size:24px">Deng, Xiang</span></td>
+                    <td align="center"><span style="font-size:24px">Weirich, Stefan</span></td>
+                    <td align="center"><span style="font-size:24px">Katzschmann, Robert</span></td>
+                    <td align="center"><span style="font-size:24px">Delbruck, Tobi</span></td>
+                </tr>
+            </table>
+            <table align="center" width="350px">
+                <tr>
+                    <td align="center"><a href='https://ieeexplore.ieee.org/document/10731344'>[Paper]</a></td>
+                    <td align="center"><a href=''>[arXiv Preprint]</a></td>
+                </tr>
+            </table>
         </center>
-	</table>
-	
-    
-	<hr>
-	<br>
+    </header>
 
-	<table align=center width=900px>
-		<tr>
-			<td width=400px>
-				<left>
-					<!--<center><h1>Acknowledgements</h1></center>-->
-					This website is based on the web template: <a href="https://github.com/richzhang/webpage-template.git"> https://github.com/richzhang/webpage-template.git</a>.
-				</left>
-			</td>
-		</tr>
-	</table>
+    <section style="text-align:center; margin: 20px auto;">
+        <iframe width="660" height="395" src="https://www.youtube.com/embed/i0qw0VHliiI?si=HzZxLTYcg5oVnCpF" 
+                title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </section>
 
-<br>
+    <hr>
+
+    <section style="max-width: 850px; margin: 20px auto;">
+        <h1>Abstract</h1>
+        <p>Rapid human-robot interactions require fast hardware platforms with minimal latency and high reliability. In response, we present a cost-effective, electrically actuated, tendon-driven robotic hand. This hand features a unique spool-free actuation mechanism that achieves a limit-to-limit flexion movement in less than 60 ms, matching human speed. To our knowledge, it is among the fastest electric motor tendon-driven robotic hands available today. The high speed of the robotic hand was successfully demonstrated in public by playing Rock Paper Scissors at a science fair. This research work outlines the design methodology and introduces a simulation-optimization framework that allows users to preview the motion of the hand, quantify the actuation performance, and customize the design parameters prior to fabrication. The proposed actuation mechanism, along with the simulation and optimization tools, illustrates design principles and computational methods applicable to other dynamic human-robot applications that require fast reaction times.</p>
+    </section>
+
+    <hr>
+
+    <section style="text-align:center; margin: 20px auto;">
+        <h2>Prototype demo at Swiss Scientifica 2023</h2>
+        <iframe width="660" height="395" src="https://www.youtube.com/embed/ge3BFSHn9Ug?si=jKT4lkE45elif5Fx" 
+                frameborder="0" allowfullscreen></iframe>
+    </section>
+
+    <hr>
+
+    <section style="text-align:center; margin: 20px auto;">
+        <h2>Talk</h2>
+        <iframe width="660" height="395" src="https://www.youtube.com/embed/vkMMNeTG4OU?si=wQg1zj4-bBOHpygQ" 
+                title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </section>
+
+    <hr>
+
+    <section style="text-align:center; margin: 20px auto;">
+        <h2>Design</h2>
+        <p>Everybody with the link can visualize the design, see the details, or even drag indivisual parts. No other sofrware is required.</p>
+        <a href="https://cad.onshape.com/documents/ef1448e23adf2fee03e4e1cd/w/cd10554b772462629b75c8dc/e/311517794416f3ce2e9ecc05" target="_blank">
+            <img src="Media/DengDesignROMAN2024.gif" alt="Deng Design" width="600">
+        </a>
+        <p><span style="font-size:24px"><a href='https://cad.onshape.com/documents/ef1448e23adf2fee03e4e1cd/w/cd10554b772462629b75c8dc/e/311517794416f3ce2e9ecc05'>[Link]</a></span></p>
+        <table align="center" width="800">
+            <tr><td align="center"><a href=https://dengxianga.github.io/RobotHandDeng2025/guide_en.html'>[Supplementary Doc]</a> | 
+                <a href='https://dengxianga.github.io/RobotHandDeng2025/guide_cn.html'>[补充文档]</a></td></tr>
+        </table>
+    </section>
+
+    <hr>
+
+    <section style="text-align:center; margin: 20px auto;">
+        <h2>Code on Git</h2>
+        <table align="center" width="800">
+            <tr><td align="center">
+                <a href='https://github.com/SensorsINI/Dextra-robot-hand-firmware'>[Robot Demo Code]</a> |
+                <a href='https://github.com/SensorsINI/dextra-roshambo-python?tab=readme-ov-file'>[Link to Perception Pipeline]</a>
+            </td></tr>
+        </table>
+    </section>
+
+    <hr>
+
+    <section style="text-align:center; margin: 20px auto;">
+        <h2>Public Exhibitions</h2>
+        <p>Swiss Scientifica, Sep 2-3, 2023<br>
+           IEEE WiCAS Symposium, Apr 4, 2024<br>
+           Swiss Robotics Day, Nov 1, 2024
+        </p>
+    </section>
+
+    <hr>
+
+ 
+<section style=" margin: 20px auto; max-width: 900px;">
+   <!-- Bibliography -->
+    <hr>
+    <h2 style="text-align:center;">Bibtex Citation</h2>
+    <pre><code>@INPROCEEDINGS{DengROMAN2024,
+  author={Deng, Xiang and Weirich, Stefan and Katzschmann, Robert K. and Delbruck, Tobi},
+  booktitle={2024 33rd IEEE International Conference on Robot and Human Interactive Communication (ROMAN)}, 
+  title={A Rapid and Robust Tendon-Driven Robotic Hand for Human-Robot Interactions Playing Rock-Paper-Scissors}, 
+  year={2024},
+  pages={2347-2354},
+  doi={10.1109/RO-MAN60168.2024.10731344}}}</code></pre>
+</section>
+
+    <hr>
+	<!--
+    <footer style="text-align:center; margin: 20px auto;">
+        <p>This website is based on the web template: 
+            <a href="https://github.com/richzhang/webpage-template.git" target="_blank">GitHub Repository</a>.
+        </p>
+    </footer>-->
 </body>
 </html>
-
