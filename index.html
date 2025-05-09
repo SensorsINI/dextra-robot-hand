@@ -26,9 +26,13 @@
         }
 
         h1 {
-            font-size: 32px;
-            font-weight: 300;
-        }
+			font-size: 32px;
+			font-weight: 300;
+			max-width: 800px; /* Adjust this value as needed */
+			width: 100%;
+			margin: 0 auto; /* Center the title within its container */
+			word-wrap: break-word; /* Ensures long words/strings wrap properly */
+		}
 
         .disclaimerbox {
             background-color: #eee;		
@@ -129,7 +133,7 @@
 
     <hr>
 
-    <section style="max-width: 850px; margin: 20px auto;">
+    <section style="max-width: 800px; margin: 20px auto;">
         <h1>Abstract</h1>
         <p>Rapid human-robot interactions require fast hardware platforms with minimal latency and high reliability. In response, we present a cost-effective, electrically actuated, tendon-driven robotic hand. This hand features a unique spool-free actuation mechanism that achieves a limit-to-limit flexion movement in less than 60 ms, matching human speed. To our knowledge, it is among the fastest electric motor tendon-driven robotic hands available today. The high speed of the robotic hand was successfully demonstrated in public by playing Rock Paper Scissors at a science fair. This research work outlines the design methodology and introduces a simulation-optimization framework that allows users to preview the motion of the hand, quantify the actuation performance, and customize the design parameters prior to fabrication. The proposed actuation mechanism, along with the simulation and optimization tools, illustrates design principles and computational methods applicable to other dynamic human-robot applications that require fast reaction times.</p>
     </section>
@@ -190,11 +194,11 @@
     <hr>
 
  
-<section style=" margin: 20px auto; max-width: 900px;">
+<section style=" margin: 20px auto; max-width: 800px;">
    <!-- Bibliography -->
     <hr>
     <h2 style="text-align:center;">Bibtex Citation</h2>
-    <pre><code>@INPROCEEDINGS{DengROMAN2024,
+    <pre style="white-space: pre-wrap; overflow-x: auto; max-width: 100%; font-size: 16px; line-height: 1.5;"><code>@INPROCEEDINGS{DengROMAN2024,
   author={Deng, Xiang and Weirich, Stefan and Katzschmann, Robert K. and Delbruck, Tobi},
   booktitle={2024 33rd IEEE International Conference on Robot and Human Interactive Communication (ROMAN)}, 
   title={A Rapid and Robust Tendon-Driven Robotic Hand for Human-Robot Interactions Playing Rock-Paper-Scissors}, 
